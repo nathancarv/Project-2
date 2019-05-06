@@ -1,46 +1,46 @@
-const Celebrity = require('./models/celebrity.js')
+const Product = require('./models/product.js')
 
 module.exports = function(app, passport) {
 
-    app.get('/celebrities', (req,res,next) => {
-        Celebrity.find().then(celebs => {
-          res.render('celebrities.hbs', { celebs })
+    app.get('/products', (req,res,next) => {
+        Product.find().then(items => {
+          res.render('products.hbs', { items })
         })
       })
       
       
-      app.post("/saveActorToTheDatabase", (req,res,next) =>{
+      app.post("/saveItemToTheDatabase", (req,res,next) =>{
         console.log('did we make it????', req.body)
-        Celebrity.create(req.body).then(result => {
-          res.redirect('celebrities')
+        Product.create(req.body).then(result => {
+          res.redirect('products')
         })
       
       })
       
                 ///details/5cc9e9a3329be1f82a23c0da
-      app.get('/details/:celebID', (req,res,next)=>{
-        Celebrity.findById(req.params.celebID).then(celeb=>{
-          res.render("celebDetail.hbs", { celeb })
+      app.get('/details/:productID', (req,res,next)=>{
+        Product.findById(req.params.productID).then(item=>{
+          res.render("productDetail.hbs", { item })
         })
       })
       
       
       app.get('/delete/:id', (req, res, next)=>{
-        Celebrity.findByIdAndDelete(req.params.id).then(r=>{
+        Product.findByIdAndDelete(req.params.id).then(r=>{
           console.log(r)
-          res.redirect('/celebrities')
+          res.redirect('/products')
         }).catch(err => console.log(err) )
       })
       
       
       app.get('/edit/:id', (req, res,next) => {
-        Celebrity.findById(req.params.id).then(celeb=>{
-          res.render("edit.hbs", { celeb })
+        Product.findById(req.params.id).then(item=>{
+          res.render("edit.hbs", { item })
         })
       })
       //http://localhost:3000/edit/5cc9ee3d420635faac3fd7df
       app.post('/edit/:id', (req, res,next) => {
-        Celebrity.findByIdAndUpdate(req.params.id, req.body).then(ifItWOrKs=>{
+        Product.findByIdAndUpdate(req.params.id, req.body).then(ifItWOrKs=>{
           res.redirect(`/details/${req.params.id}`)
         })
       })
