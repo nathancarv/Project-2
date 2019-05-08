@@ -17,6 +17,11 @@ var session      = require('express-session');
 var configDB = require('./config/database.js');
 
 var path = require('path');
+var hbs = require('hbs')
+
+hbs.registerHelper('json', function(context){
+    return JSON.stringify(context)
+})
 
 // configuration ===============================================================
 mongoose.connect(configDB.url); // connect to our database

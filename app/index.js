@@ -20,6 +20,7 @@ module.exports = function(app, passport) {
                 ///details/5cc9e9a3329be1f82a23c0da
       app.get('/details/:productID', (req,res,next)=>{
         Product.findById(req.params.productID).then(item=>{
+          console.log(item, 2454253)
           res.render("productDetail.hbs", { item })
         })
       })
@@ -45,4 +46,19 @@ module.exports = function(app, passport) {
         })
       })
 
+      app.post('/product/add', (req, res, next) => {
+        const newItem = new Product({name: req.body.name})
+        newItem.available.push({location: req.body.location, price: req.body.price})
+        newItem.save()
+        .then(theNewItem => {
+          console.log("the new item ====== ", theNewItem);
+          res.redirect('/products');
+        })
+        .catch(err => { next(err) })
+      })
+
+
+      app.get('/locations/:storeName', (req, res, next) => {
+          res.render('location', { name :req.params.storeName})
+      })
 }

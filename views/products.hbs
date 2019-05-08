@@ -1,10 +1,13 @@
-welcome to the products page 
+<h1> Search for a product or post your cheapest finds!</h1> 
+<h5><p>Or go <a href="/">home</a>.</p></h5>
 
+<p> Search below </p>
+<input type="text" id="search"/>
+{{!-- <div class = "hideme">
 {{#each items}}
   <li>
     {{name}}
-    {{price}}
-    {{location}}
+    {{available}}
 
     <a href="details/{{_id}}">Details</a>
     <a href="edit/{{_id}}">Edit</a>
@@ -12,3 +15,28 @@ welcome to the products page
 
   </li>
 {{/each}}
+</div> --}}
+
+
+<p> Input found products below</p>
+
+<div id="products">
+  <form action="/product/add" method="POST">
+    <label for=""> Item Name </label>
+    <input id="" type="text" name="name" placeholder="">
+
+    <label for=""> Price </label>
+    <input id="" type="text" name="price" placeholder="">
+
+    <label for=""> Location </label>
+    <input id="" type="text" name="location" placeholder="">
+
+    <button></button>
+
+  </form>
+</div>
+
+<script>
+  let theItems = JSON.parse('{{{json items}}}')
+</script>
+<script src="../myjavascript.js"></script>

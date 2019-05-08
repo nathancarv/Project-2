@@ -1,24 +1,27 @@
 const mongoose = require('mongoose');
-const Product = require('../models/product.js');
+const Product = require('../app/models/product.js');
 mongoose.connect('mongodb://localhost/secondProject');
 
 const products = [
     {
-        name: 'iPhone',
-        price: 1000,
-        location: ['Target', 'Walmart', 'Best Buy', 'Amazon']
+        name: 'iPhone XS Max 64 GB',
+        available:[ 
+            {location: 'Best Buy', price: 1009.99}
+        ] 
     },
 
     {
-        name: 'Toaster',
-        price: 12,
-        location: ['Target', 'Walmart', 'Amazon']
+        name: 'Logitech MX Master Wireless Mouse',
+        available: [
+            {location: 'Amazon', price: 63.95}, 
+        ]
     },
 
     {
-        name: 'Macbook Pro',
-        price: 1200,
-        location: ['Target', 'Walmart', 'Best Buy', 'Amazon']
+        name: '13-inch MacBook Pro - 2018',
+        available: [
+            {location: 'Apple', price: 1299}, 
+        ]
 
     }
   

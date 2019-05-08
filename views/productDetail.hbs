@@ -1,5 +1,16 @@
 Product detail
+<br>
+<a href="/products"> Return</a>
+<h1>{{item.name}}</h1>
 
-{{item.name}}
+{{!-- {{item._id}} --}}
 
-{{item.catchPhrase}}
+{{#each item.available}} 
+<label>Price :</label>
+{{this.price}}
+<br>
+<label>Location :</label>
+
+<a href="/locations/{{this.location}}">{{this.location}}</a>
+{{/each}}
+
