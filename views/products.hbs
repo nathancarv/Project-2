@@ -1,24 +1,11 @@
 <h1> Search for a product or post your cheapest finds!</h1> 
-<h5><p>Or go <a href="/">home</a>.</p></h5>
 
 <p> Search below </p>
 <input type="text" id="search"/>
-{{!-- <div class = "hideme">
-{{#each items}}
-  <li>
-    {{name}}
-    {{available}}
-
-    <a href="details/{{_id}}">Details</a>
-    <a href="edit/{{_id}}">Edit</a>
-    <a href="delete/{{_id}}">X</a>
-
-  </li>
-{{/each}}
-</div> --}}
 
 
-<p> Input found products below</p>
+
+<p> Post your products below!</p>
 
 <div id="products">
   <form action="/product/add" method="POST">
@@ -31,6 +18,8 @@
     <label for=""> Location </label>
     <input id="" type="text" name="location" placeholder="">
 
+    <label for=""> Image </label>
+    
     <button></button>
 
   </form>

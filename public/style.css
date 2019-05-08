@@ -1,3 +1,4 @@
-/* .hideme {
-    display: none;
-} */
+header.mainheader {
+    background-image: url("../images/techEarth.jpg");
+    background-size: cover;
+}
