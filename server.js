@@ -9,6 +9,8 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
 
+require('dotenv').config()
+
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
@@ -18,6 +20,7 @@ var configDB = require('./config/database.js');
 
 var path = require('path');
 var hbs = require('hbs')
+
 
 hbs.registerHelper('json', function(context){
     return JSON.stringify(context)

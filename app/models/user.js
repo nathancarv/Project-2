@@ -26,8 +26,8 @@ var userSchema = mongoose.Schema({
         token        : String,
         email        : String,
         name         : String
-    }
-
+    },
+    profilePic: String
 });
 
 // generating a hash
