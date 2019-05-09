@@ -27,7 +27,7 @@ hbs.registerHelper('json', function(context){
 })
 
 // configuration ===============================================================
-mongoose.connect(configDB.url); // connect to our database
+mongoose.connect('mongodb+srv://ironhack:ironhack@cluster0-uqv35.mongodb.net/test?retryWrites=true'); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
 
