@@ -89,35 +89,50 @@
              </div><!--/tab-pane-->
              
              
-             <div class="tab-pane" id="likes">
+             <div class="tab-pane theLikes" id="likes">
                 {{#each user.likes}}
                     <br>
-                    {{this.name}}
-                    <form action= "/{{this._id}}/deletelike" method="POST">
-                    <label>{{this._id}}</label>
-                        <button type="submit">delete</button>
-                    </form>
+                    <div>
+                        <a href="/details/{{this._id}}"><h4>{{this.name}}</h4></a>
+                        <form action= "/{{this._id}}/deletelike" method="POST">
+                            <label>
+                                <button type="submit">delete</button>
+                            </label>
+                        </form>
+
+                    </div>
                 {{/each}}
                <h2></h2>
          
              </div><!--/tab-pane-->
              
              
-             <div class="tab-pane" id="posts">
+             <div class="tab-pane thePosts" id="posts">
 
                 
                  {{#each products}}
                  <br>
-                    {{this.name}}:
-                     {{#each this.available}}
-                     {{this.location}}:
-                     {{this.price}}
-                     
-                     {{/each}}
-                     <form action= "/{{this._id}}/deletepost" method="POST">
-                    <label>{{this._id}}</label>
-                        <button type="submit">delete</button>
-                    </form>
+                    <div>
+                        <div class="postsMainInfo">
+                            <div>
+                                <a href="/details/{{this._id}}"><h4>{{this.name}}</h4></a>
+                            </div>
+                            
+                            {{#each this.available}}
+                            <div>
+                                <h4>{{this.location}}:</h4>
+                                <h5>{{this.price}}</h5>
+                            </div>
+                            
+                            {{/each}}
+                        </div>
+                        <form action= "/{{this._id}}/deletepost" method="POST">
+                            <label>
+                                <button type="submit">delete</button>
+                            </label>
+                        </form>
+
+                    </div>
                  {{/each}}
             		
                

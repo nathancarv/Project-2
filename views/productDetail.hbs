@@ -1,21 +1,29 @@
 Product detail
 <br>
 <a href="/products"> Return</a>
-<h1>{{item.name}}</h1> 
+<div class="productDetailsTop">
+    <h1>{{item.name}}</h1> 
 
-<form action="" method="POST">
- <button class="btn btn-block btn-primary"><i class="fa fa-thumbs-up"></i> Like</button>
-</form>
+    <form action="" method="POST">
+    <button class="btn btn-block btn-primary"><i class="fa fa-thumbs-up"></i> Like </button>
+    </form>
+</div>
 {{!-- {{item._id}} --}}
 
-{{#each item.available}} 
-<label>Price :</label>
-{{this.price}}
-<br>
-<label>Location :</label>
+<div>
+    {{#each item.available}} 
+    <div>
+        <label>Location :</label>
+        {{!-- <a href="/locations/{{this.location}}">{{this.location}}</a> --}}
+        <a href="https://www.{{this.location}}.com">{{this.location}}</a>
+        <label>Price :</label>
+        {{this.price}}
+        <br>
 
-<img src="{{this.image}}" alt="">
 
-<a href="/locations/{{this.location}}">{{this.location}}</a>
-{{/each}}
+        <img src="{{this.image}}" alt="">
+    </div>
+    {{/each}}
+
+</div>
 

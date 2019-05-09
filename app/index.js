@@ -67,12 +67,21 @@ module.exports = function(app, passport) {
     });
   });
 
-  app.post("/product/add", (req, res, next) => {
+  app.post("/product/add",uploadCloud.single("photo"), (req, res, next) => {
     const newItem = new Product({ name: req.body.name });
-    newItem.available.push({
-      location: req.body.location,
-      price: req.body.price
-    });
+    if(req.body.photo) {
+      newItem.available.push({
+        location: req.body.location,
+        price: req.body.price,
+        image: req.file.url
+      });  
+    } else {
+      newItem.available.push({
+        location: req.body.location,
+        price: req.body.price,
+        image: "/imges/techEarth.jpg"
+      });
+    }
     newItem.createdBy = req.user._id;
 
     newItem
@@ -105,6 +114,7 @@ module.exports = function(app, passport) {
   // PROFILE SECTION =========================
   app.get("/profile", isLoggedIn, function(req, res) {
     Product.find({ createdBy: req.user._id }).then(products => {
+      console.log("the products in the profile page ----------------- ", products, "================== the user   ============ ", req.user)
       res.render("profile.hbs", {
         user: req.user,
         products: products
