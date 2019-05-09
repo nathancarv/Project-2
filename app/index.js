@@ -1,7 +1,7 @@
 const Product = require("./models/product.js");
 const User = require("./models/user.js");
 
-const uploadCloud = require("./cloudinary.js")
+const uploadCloud = require("./cloudinary.js");
 module.exports = function(app, passport) {
   app.get("/products", (req, res, next) => {
     Product.find().then(items => {
@@ -35,15 +35,16 @@ module.exports = function(app, passport) {
   });
 
   //http://localhost:8080/details/5cd2fdc95f4d0578a13b3e41
-  app.post("/details/:productID", isLoggedIn, (req, res, next)=>{
-    Product.findById(req.params.productID).then(product=>{
-      User.findOneAndUpdate({_id:req.user._id}, { $addToSet: { likes: product } }).then(results=>{
-        res.redirect("/profile")
-     })
-    })
-
-  })
-
+  app.post("/details/:productID", isLoggedIn, (req, res, next) => {
+    Product.findById(req.params.productID).then(product => {
+      User.findOneAndUpdate(
+        { _id: req.user._id },
+        { $addToSet: { likes: product } }
+      ).then(results => {
+        res.redirect("/profile");
+      });
+    });
+  });
 
   app.get("/delete/:id", (req, res, next) => {
     Product.findByIdAndDelete(req.params.id)
@@ -72,13 +73,18 @@ module.exports = function(app, passport) {
       location: req.body.location,
       price: req.body.price
     });
-    newItem.createdBy = req.user._id
+    newItem.createdBy = req.user._id;
 
     newItem
       .save()
       .then(theNewItem => {
         console.log("the new item ====== ", theNewItem);
-        res.redirect("/products");
+        User.findById(req.user._id).then(user => {
+          user.posts.push(theNewItem);
+          user.save();
+          res.redirect("/products");
+
+        })
       })
       .catch(err => {
         next(err);
@@ -98,27 +104,49 @@ module.exports = function(app, passport) {
 
   // PROFILE SECTION =========================
   app.get("/profile", isLoggedIn, function(req, res) {
-    Product.find({createdBy : req.user._id}).then(products=>{
+    Product.find({ createdBy: req.user._id }).then(products => {
       res.render("profile.hbs", {
         user: req.user,
-        products:products
+        products: products
       });
-    })
+    });
   });
 
   //http://localhost:8080/details/5cd2fdc95f4d0578a13b3e41
 
-  
-
-  app.post("/profile", uploadCloud.single('photo'), isLoggedIn, function(req, res) {
-    if(!req.file){
-      return res.redirect('back')
+  app.post("/profile", uploadCloud.single("photo"), isLoggedIn, function(
+    req,
+    res
+  ) {
+    if (!req.file) {
+      return res.redirect("back");
     }
-    User.findByIdAndUpdate(req.user._id, {profilePic:req.file.url}).then(r=>{
-      res.redirect('back')
-    })
-    
-  })
+    User.findByIdAndUpdate(req.user._id, { profilePic: req.file.url }).then(
+      r => {
+        res.redirect("back");
+      }
+    );
+  });
+
+  app.post("/:id/deletelike", (req, res, next) => {
+    User.findById(req.user._id).then(user => {
+      user.likes.splice(user.likes.indexOf(req.params.id), 1);
+      user.save();
+      res.redirect("/profile");
+    });
+  });
+
+  app.post("/:id/deletepost", (req, res, next) => {
+    User.findById(req.user._id).then(user => {
+      user.posts.splice(user.posts.indexOf(req.params.id), 1);
+      user.save();
+      Product.findByIdAndRemove(req.params.id).then( () => {
+        res.redirect("/profile");
+
+      })
+    });
+  });
+
   // LOGOUT ==============================
   app.get("/logout", function(req, res) {
     req.logout();
@@ -130,6 +158,4 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) return next();
 
   res.redirect("/");
-
 }
-

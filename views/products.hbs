@@ -34,7 +34,10 @@
     <input id="" type="text" name="location" placeholder="">
 
     <label for=""> Image </label>
-    {{!-- <button type="button" class="btn btn-danger wrn-btn">Submit</button> --}}
+        <form action="" method="POST" enctype="multipart/form-data"> 
+            <input type="file" name="photo" class="text-center center-block file-upload" >
+            <input type="submit" >
+        </form>
 
     <button type = "submit" class="btn btn-danger wrn-btn">Submit</button>
 
@@ -44,4 +47,50 @@
 <script>
   let theItems = JSON.parse('{{{json items}}}')
 </script>
-<script src="../myjavascript.js"></script>
+<script src="../myjavascript.js"></script> 
+
+
+
+
+ {{!-- <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 text-center">
+ <h1 class="text-center"> Search for a product or post your cheapest finds!</h1> 
+    </div>
+    <div class="col-md-12 text-center">
+            <p> Search below </p>
+    </div>
+    <div class="col-md-12 text-center">
+            <div class="searchbar">
+          <input class="search_input text-center" type="text" id="search" placeholder="Search...">
+          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+    </div>
+    <div class="col-md-12 text-center">
+      <p> Post your products below!</p>
+    </div>
+    <div class="col-md-12 text-center">
+      <div id="products">
+    <form action="/product/add" method="POST">
+    <label for=""> Item Name </label>
+    <input id="" class="form-control" type="text" name="name" placeholder="">
+
+    <label for=""> Price </label>
+    <input id="" class="form-control" type="text" name="price" placeholder="">
+
+    <label for=""> Location </label>
+    <input id="" class="form-control" type="text" name="location" placeholder="">
+
+    {{!-- <label for=""> Image </label> --}}
+
+
+  </form>
+  </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  let theItems = JSON.parse('{{{json items}}}')
+</script>
+<script src="../myjavascript.js"></script> 

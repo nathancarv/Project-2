@@ -41,8 +41,9 @@
           <ul class="list-group">
             <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
             {{!-- <li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span> 125</li> --}}
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 4</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 2</li>
+           
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> <span id="total-likes"></span></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> <span id="total-posts"></span></li>
             {{!-- <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li> --}}
           </ul> 
 {{!--                
@@ -92,6 +93,10 @@
                 {{#each user.likes}}
                     <br>
                     {{this.name}}
+                    <form action= "/{{this._id}}/deletelike" method="POST">
+                    <label>{{this._id}}</label>
+                        <button type="submit">delete</button>
+                    </form>
                 {{/each}}
                <h2></h2>
          
@@ -107,7 +112,12 @@
                      {{#each this.available}}
                      {{this.location}}:
                      {{this.price}}
+                     
                      {{/each}}
+                     <form action= "/{{this._id}}/deletepost" method="POST">
+                    <label>{{this._id}}</label>
+                        <button type="submit">delete</button>
+                    </form>
                  {{/each}}
             		
                
@@ -118,4 +128,19 @@
     </div><!--/row-->
         
 </div>
+
+<script>
+let totalLikes = 0;
+let totalPosts = 0;
+{{#each user.likes}}
+totalLikes++;
+{{/each}}
+{{#each products}}
+totalPosts++;
+{{/each}}
+document.querySelector('#total-likes').innerText = totalLikes;
+document.querySelector('#total-posts').innerText = totalPosts;
+
+console.log(total)
+</script>
 
