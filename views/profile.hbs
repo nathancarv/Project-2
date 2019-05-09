@@ -30,11 +30,11 @@
         </form>
       </div></hr><br>
 
-
+       
                
           <div class="panel panel-default">
             <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
-            <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
+            <div class="panel-body"><a href="https://github.com/nathancarv">github.com</a></div>
           </div>
           
           
@@ -89,13 +89,26 @@
              
              
              <div class="tab-pane" id="likes">
-               
+                {{#each user.likes}}
+                    <br>
+                    {{this.name}}
+                {{/each}}
                <h2></h2>
          
              </div><!--/tab-pane-->
              
              
              <div class="tab-pane" id="posts">
+
+                
+                 {{#each products}}
+                 <br>
+                    {{this.name}}:
+                     {{#each this.available}}
+                     {{this.location}}:
+                     {{this.price}}
+                     {{/each}}
+                 {{/each}}
             		
                
               </div><!--/tab-pane-->

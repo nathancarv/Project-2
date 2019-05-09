@@ -4,7 +4,8 @@ const Schema = mongoose.Schema
 
 const ProductSchema = new Schema({
   name: String,
-  available: [], 
+  available: [],
+  createdBy: {type: Schema.Types.ObjectId, ref:'User'}
 })
 
 const Product = mongoose.model('product', ProductSchema)

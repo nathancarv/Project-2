@@ -9,12 +9,22 @@ module.exports = function(app, passport) {
     });
   });
 
-  app.post("/saveItemToTheDatabase", (req, res, next) => {
-    console.log("did we make it????", req.body);
-    Product.create(req.body).then(result => {
-      res.redirect("products");
-    });
-  });
+  // app.post("/saveItemToTheDatabase", isLoggedIn, (req, res, next) => {
+  //   console.log("did we make it????", req.body);
+  //   let product = req.body;
+  //   product.createdBy = req.user._id
+  //   Product.create(product).then(result => {
+  //     res.redirect("products");
+  //   });
+  // });
+
+  // app.post("/product/add/:productID", isLoggedIn, (req, res, next)=>{
+  //   Product.findById(req.params.productID).then(product=>{
+  //     User.findOneAndUpdate({_id:req.user._id}, { $addToSet: { posts: product } }).then(results=>{
+  //       res.redirect("/profile")
+  //     })
+  //   })
+  // })
 
   ///details/5cc9e9a3329be1f82a23c0da
   app.get("/details/:productID", (req, res, next) => {
@@ -23,6 +33,17 @@ module.exports = function(app, passport) {
       res.render("productDetail.hbs", { item });
     });
   });
+
+  //http://localhost:8080/details/5cd2fdc95f4d0578a13b3e41
+  app.post("/details/:productID", isLoggedIn, (req, res, next)=>{
+    Product.findById(req.params.productID).then(product=>{
+      User.findOneAndUpdate({_id:req.user._id}, { $addToSet: { likes: product } }).then(results=>{
+        res.redirect("/profile")
+     })
+    })
+
+  })
+
 
   app.get("/delete/:id", (req, res, next) => {
     Product.findByIdAndDelete(req.params.id)
@@ -51,6 +72,8 @@ module.exports = function(app, passport) {
       location: req.body.location,
       price: req.body.price
     });
+    newItem.createdBy = req.user._id
+
     newItem
       .save()
       .then(theNewItem => {
@@ -74,13 +97,16 @@ module.exports = function(app, passport) {
   });
 
   // PROFILE SECTION =========================
-  app.get("/profile", function(req, res) {
-    res.render("profile.hbs", {
-      user: req.user
-    });
+  app.get("/profile", isLoggedIn, function(req, res) {
+    Product.find({createdBy : req.user._id}).then(products=>{
+      res.render("profile.hbs", {
+        user: req.user,
+        products:products
+      });
+    })
   });
 
-
+  //http://localhost:8080/details/5cd2fdc95f4d0578a13b3e41
 
   
 
@@ -104,4 +130,6 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) return next();
 
   res.redirect("/");
+
 }
+

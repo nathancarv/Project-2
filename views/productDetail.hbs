@@ -1,8 +1,11 @@
 Product detail
 <br>
 <a href="/products"> Return</a>
-<h1>{{item.name}}</h1>  <button class="btn btn-block btn-primary"><i class="fa fa-thumbs-up"></i> Like</button>
+<h1>{{item.name}}</h1> 
 
+<form action="" method="POST">
+ <button class="btn btn-block btn-primary"><i class="fa fa-thumbs-up"></i> Like</button>
+</form>
 {{!-- {{item._id}} --}}
 
 {{#each item.available}} 
