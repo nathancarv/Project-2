@@ -56,6 +56,10 @@ app.use((req, res, next) => {
     next();
 })
 
+app.locals.myBackground = "generalBackground"
+
+
+
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 require('./app/index.js')(app, passport)

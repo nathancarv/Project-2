@@ -67,9 +67,17 @@ opacity: 0.9;
         width: 100%;
         margin: 0;
         padding: 0;
+        
+        }
+
+    .generalBackground {
         background-image: url("../images/nasa.jpg");
         background-size: cover;
-        }
+    }
+
+    .detailsBackground {
+        background-color: white;
+    }
 
 .productDetailsTop {
     width: 13vw;

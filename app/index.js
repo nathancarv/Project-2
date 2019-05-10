@@ -30,6 +30,7 @@ module.exports = function(app, passport) {
   app.get("/details/:productID", (req, res, next) => {
     Product.findById(req.params.productID).then(item => {
       console.log(item, 2454253);
+      res.locals.myBackground = "whiteBackground"
       res.render("productDetail.hbs", { item });
     });
   });
