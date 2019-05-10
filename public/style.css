@@ -10,6 +10,7 @@
     background-size: cover;
     width:98vw;
     height:100vh;
+    color: white;
 }
 
 .jumbotron {
@@ -66,6 +67,8 @@ opacity: 0.9;
         width: 100%;
         margin: 0;
         padding: 0;
+        background-image: url("../images/nasa.jpg");
+        background-size: cover;
         }
 
 .productDetailsTop {
@@ -175,4 +178,14 @@ a{
     font-size: 22px;
 
 }
+}
+
+.row{
+    background-image: url("../images/phonecompass.jpg");
+    background-size: cover;
+    width:87vw;
+}
+
+.page-header h1{
+    color: white;
 }
