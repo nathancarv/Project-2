@@ -30,7 +30,7 @@ module.exports = function(app, passport) {
   app.get("/details/:productID", (req, res, next) => {
     Product.findById(req.params.productID).then(item => {
       console.log(item, 2454253);
-      res.locals.myBackground = "whiteBackground"
+      res.locals.myBackground = "whiteBackground "
       res.render("productDetail.hbs", { item });
     });
   });
@@ -68,21 +68,30 @@ module.exports = function(app, passport) {
     });
   });
 
-  app.post("/product/add",uploadCloud.single("photo"), (req, res, next) => {
+  app.post("/product/add", isLoggedIn, uploadCloud.single("photo"), (req, res, next) => {
+    console.log('does this work? ', req.body, req.file)
+    if(req.file){
+      var pic = req.file.url;
+    }else{
+       var pic = 'http://res.cloudinary.com/nathanielironhack/image/upload/v1557435860/folder-name/iphone-xs-max-gold-select-2018.png.png'
+     }
+
+  
     const newItem = new Product({ name: req.body.name });
-    if(req.body.photo) {
+    //if(req.body.photo) {
       newItem.available.push({
         location: req.body.location,
         price: req.body.price,
-        image: req.file.url
+        image: pic
       });  
-    } else {
+    /*} else {
       newItem.available.push({
         location: req.body.location,
         price: req.body.price,
         image: "/imges/techEarth.jpg"
       });
-    }
+    }*/
+    
     newItem.createdBy = req.user._id;
 
     newItem
