@@ -82,12 +82,6 @@ opacity: 0.9;
     align-content: center;
 }
 
-.thePosts {
-    /* display: flex !important;
-    justify-content: space-between;
-    align-items: center;
-    width: 25vw; */
-}
 
 .thePosts div {
     display: flex;
@@ -181,10 +175,4 @@ a{
     font-size: 22px;
 
 }
-
-
-
-
-
-
 }

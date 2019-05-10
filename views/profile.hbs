@@ -2,14 +2,14 @@
 <div class="container">
 
     <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <h1><span class="fa fa-anchor"></span> Hello {{user.local.email}}!</h1>
 
     </div>
 
     <hr>
 <div class="container bootstrap snippet">
     <div class="row">
-  		<div class="col-sm-10"><h1>Username: {{user.local.email}}</h1></div>
+  		{{!-- <div class="col-sm-10"><h1>Username: {{user.local.email}}</h1></div> --}}
     	<div class="col-sm-2"><a href="/users" class="pull-right"></a></div>
     </div>
     <div class="row">
@@ -57,7 +57,7 @@
         </div><!--/col-3-->
     	<div class="col-sm-9">
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+                <li class="active"><a data-toggle="tab" href="#home">Profile</a></li>
                 <li><a data-toggle="tab" href="#likes">Likes </a></li>
                 <li><a data-toggle="tab" href="#posts">Posts </a></li>
               </ul>
