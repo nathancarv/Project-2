@@ -1,60 +1,72 @@
+<div class="profile-container">
 
+  <h1> Search for a product or post your cheapest finds!</h1>
 
-<h1> Search for a product or post your cheapest finds!</h1> 
+  {{!-- <p> Search below </p> --}}
+  {{!-- <input type="text" id="search"/> --}}
 
-<p> Search below </p>
-{{!-- <input type="text" id="search"/> --}}
-<head>
+  <head>
     {{!-- <title>Awesome Search Box</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> --}}
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   </head>
-<div class="container h-100">
-      <div class="d-flex justify-content-center h-100">
-        <div class="searchbar">
-          <input class="search_input" type="text" id="search" placeholder="Search...">
-          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-        </div>
+  <div class="container h-100">
+    <div class="d-flex justify-content-center h-100 search-bar">
+      <div class="searchbar">
+        <input class="search_input" type="text" id="search" placeholder="Search...">
+        <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
       </div>
     </div>
+  </div>
 
 
 
-<p> Post your products below!</p>
+  <p> Post your products below!</p>
 
-<div id="products">
-  
+  <div id="products">
 
-  <form action="/product/add" method="POST" enctype="multipart/form-data">
-    <label for=""> Item Name </label>
-    <input id="" type="text" name="name" placeholder="">
+    <div class="product-form">
 
-    <label for=""> Price </label>
-    <input id="" type="text" name="price" placeholder="">
+      <form action="/product/add" method="POST" enctype="multipart/form-data">
+        <label for=""> Item Name </label>
+        <input id="" type="text" name="name" placeholder="">
 
-    <label for=""> Location </label>
-    <input id="" type="text" name="location" placeholder="">
+        <label for=""> Price </label>
+        <input id="" type="text" name="price" placeholder="">
 
-    <label for=""> Image </label>
-        <form action="" method="POST" enctype="multipart/form-data"> 
-            <input type="file" name="photo" class="text-center center-block file-upload" >
-            <input type="submit" >
-        </form>
+        <label for=""> Location </label>
+        <input id="" type="text" name="location" placeholder="">
+    </div>
+    <div>
+      <span class="upload-img">Upload your image</span>
+    </div>
+    <div class="choose-file">
+    {{!-- <label for="">Image</label> --}}
+    <form action="" method="POST" enctype="multipart/form-data">
+      <input type="file" name="photo" class="text-center center-block file-upload">
+      <div class="submit">
+      <input type="submit">
+      </div>
+    </form>
+    </div>
 
-    <button type = "submit" class="btn btn-danger wrn-btn">Submit</button>
+    {{!-- <button type="submit" class="btn btn-danger wrn-btn">Submit</button> --}}
 
-  </form>
+    </form>
+
+  </div>
 </div>
 
 <script>
   let theItems = JSON.parse('{{{json items}}}')
 </script>
-<script src="../myjavascript.js"></script> 
+<script src="../myjavascript.js"></script>
 
 
 
 
- {{!-- <div class="container-fluid">
+{{!-- <div class="container-fluid">
   <div class="row">
     <div class="col-md-12 text-center">
  <h1 class="text-center"> Search for a product or post your cheapest finds!</h1> 
@@ -85,14 +97,14 @@
     {{!-- <label for=""> Image </label> --}}
 
 
-  </form>
-  </div>
-    </div>
-  </div>
+</form>
+</div>
+</div>
+</div>
 </div>
 
 
 <script>
   let theItems = JSON.parse('{{{json items}}}')
 </script>
-<script src="../myjavascript.js"></script> 
+<script src="../myjavascript.js"></script>

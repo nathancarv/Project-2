@@ -1,14 +1,14 @@
 
-<div class="container index">
+<div class="container index" style="border-radius: 40px">
 
-    <div class="jumbotron text-center">
+    <div class="jumbotron text-center jumbo" style="border-radius: 40px">
         <h1><span class="fa fa-lock"></span> Bargain Finder</h1>
 
         {{#if currentUser}}
         {{else}}
-            <h2>Join our community in finding the best deals for you!</h2>
+            <h2 style="color: black">Join our community in finding the best deals for you!</h2>
 
-            <p>Login or Register with:</p>
+            <p style="color: black">Login or Register with:</p>
 
             <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Login</a>
             <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Signup</a>
