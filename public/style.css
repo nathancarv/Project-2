@@ -197,3 +197,7 @@ a{
 .page-header h1{
     color: white;
 }
+
+.container.bootstrap.snippet{
+    margin-left: -67px;
+}
