@@ -73,6 +73,9 @@ opacity: 0.9;
     .generalBackground {
         background-image: url("../images/nasa.jpg");
         background-size: cover;
+        background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50%;
     }
 
     .detailsBackground {
@@ -187,17 +190,20 @@ a{
 
 }
 }
-
+ 
 .row{
-    background-image: url("../images/phonecompass.jpg");
+    /* background-image: url("../images/phonecompass.jpg");  */
     background-size: cover;
-    width:87vw;
+    background-color: white;
+    /* height: 500vh; */
+     width:87vw;
 }
 
 .page-header h1{
     color: white;
 }
-
+@media only screen and (min-width: 768px) {
 .container.bootstrap.snippet{
     margin-left: -67px;
+}
 }
