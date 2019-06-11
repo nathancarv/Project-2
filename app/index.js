@@ -121,6 +121,10 @@ module.exports = function(app, passport) {
     res.render("index.hbs");
   });
 
+  app.get("/about", function(req, res) {
+    res.render("about.hbs");
+  });
+
   // PROFILE SECTION =========================
   app.get("/profile", isLoggedIn, function(req, res) {
     Product.find({ createdBy: req.user._id }).then(products => {
